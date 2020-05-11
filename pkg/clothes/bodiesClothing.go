@@ -3,6 +3,7 @@ package clothes
 // BodiesClothes describes the clothing worn on the body
 type BodiesClothes struct {
 	armor int
+	Name  string
 }
 
 // Armor return armor of current Bodies Clothes
