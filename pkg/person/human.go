@@ -2,7 +2,8 @@ package person
 
 // Human describes a human race character
 type Human struct {
-	hp int
+	hp   int
+	Mana int
 }
 
 // NewHuman create a human race character
@@ -18,4 +19,9 @@ func (h *Human) HP() int {
 // SetHP set current HP
 func (h *Human) SetHP(hp int) {
 	h.hp = hp
+}
+
+// Accept serialize human by SerializeVisitor
+func (h *Human) Accept(v SerializeVisitor) string {
+	return v.SerializeHuman(h)
 }
