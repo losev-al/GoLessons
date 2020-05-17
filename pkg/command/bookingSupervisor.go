@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/losev-al/GoLessons/pkg/payer"
+
 	"github.com/logrusorgru/aurora"
 )
 
@@ -15,7 +17,7 @@ type BookingSupervisor struct {
 }
 
 // NewBookingSupervisor create Supervisor for booking and paying for tickets along the route
-func NewBookingSupervisor(cities ...string) *BookingSupervisor {
+func NewBookingSupervisor(p *payer.Payer, cities ...string) *BookingSupervisor {
 	result := BookingSupervisor{}
 	citiesCount := len(cities)
 	result.commands = make([]Command, 2*(citiesCount-1)+1)
@@ -23,7 +25,7 @@ func NewBookingSupervisor(cities ...string) *BookingSupervisor {
 		result.commands[i] = NewBookingTripCommand(cities[i], cities[i+1])
 		result.commands[citiesCount+i] = NewPayingForTripCommand(cities[i], cities[i+1])
 	}
-	result.commands[citiesCount-1] = NewPaymentReceptionCommand()
+	result.commands[citiesCount-1] = NewPaymentReceptionCommand(p)
 	return &result
 }
 
