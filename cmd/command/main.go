@@ -6,15 +6,15 @@ import (
 	"math/rand"
 	"time"
 
+	"github.com/losev-al/GoLessons/pkg/bookingsupervisor"
+	"github.com/losev-al/GoLessons/pkg/factorymethod"
 	"github.com/losev-al/GoLessons/pkg/payer"
-
-	"github.com/losev-al/GoLessons/pkg/command"
 )
 
 func main() {
 	rand.Seed(time.Now().UnixNano())
 	p := &payer.Payer{HasBankСard: false, HasPayPalWallet: true, HasYandexMoney: true}
-	s := command.NewBookingSupervisor(p, "A", "B", "C", "D")
+	s := bookingsupervisor.NewBookingSupervisor(p, factorymethod.BookingTripCreator{}, factorymethod.PayingForTrip{}, "A", "B", "C", "D")
 	message, err := s.Run()
 	if err == nil {
 		fmt.Println(message)

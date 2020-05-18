@@ -1,9 +1,11 @@
-package command
+package bookingsupervisor
 
 import (
 	"errors"
 	"fmt"
 
+	"github.com/losev-al/GoLessons/pkg/command"
+	"github.com/losev-al/GoLessons/pkg/factorymethod"
 	"github.com/losev-al/GoLessons/pkg/payer"
 
 	"github.com/logrusorgru/aurora"
@@ -13,19 +15,19 @@ const repeatCount int = 3
 
 // BookingSupervisor implement Supervisor for booking and paying for tickets along the route (include сompensating transaction)
 type BookingSupervisor struct {
-	commands []Command
+	commands []command.Command
 }
 
 // NewBookingSupervisor create Supervisor for booking and paying for tickets along the route
-func NewBookingSupervisor(p *payer.Payer, cities ...string) *BookingSupervisor {
+func NewBookingSupervisor(p *payer.Payer, bookingCreator factorymethod.Creator, payingCreator factorymethod.Creator, cities ...string) *BookingSupervisor {
 	result := BookingSupervisor{}
 	citiesCount := len(cities)
-	result.commands = make([]Command, 2*(citiesCount-1)+1)
+	result.commands = make([]command.Command, 2*(citiesCount-1)+1)
 	for i := 0; i < citiesCount-1; i++ {
-		result.commands[i] = NewBookingTripCommand(cities[i], cities[i+1])
-		result.commands[citiesCount+i] = NewPayingForTripCommand(cities[i], cities[i+1])
+		result.commands[i] = bookingCreator.Create(cities[i], cities[i+1])
+		result.commands[citiesCount+i] = payingCreator.Create(cities[i], cities[i+1])
 	}
-	result.commands[citiesCount-1] = NewPaymentReceptionCommand(p)
+	result.commands[citiesCount-1] = command.NewPaymentReceptionCommand(p)
 	return &result
 }
 
@@ -53,7 +55,7 @@ func (s *BookingSupervisor) RunUndo(step int) error {
 	return nil
 }
 
-func runWithRepeat(c Command, doRunForward bool) error {
+func runWithRepeat(c command.Command, doRunForward bool) error {
 	var method func() error
 	if doRunForward {
 		method = c.Execute
