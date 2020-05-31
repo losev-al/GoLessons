@@ -3,7 +3,7 @@
 
 1. Паттерн фасад [ветка](https://github.com/losev-al/GoLessons/tree/Lesson1) | [коммит](https://github.com/losev-al/GoLessons/commit/c7496748016a55c82ba7b9f69e8958318ba395fc)
 
-2. Паттерн фасад [ветка](https://github.com/losev-al/GoLessons/tree/Lesson2) | [коммит](https://github.com/losev-al/GoLessons/commit/24ee0886126b0aa935e34124e1821037c66406a7)
+2. Паттерн строитель [ветка](https://github.com/losev-al/GoLessons/tree/Lesson2) | [коммит](https://github.com/losev-al/GoLessons/commit/24ee0886126b0aa935e34124e1821037c66406a7)
 
 3. Паттерн посетитель [ветка](https://github.com/losev-al/GoLessons/tree/Lesson3) | [коммит](https://github.com/losev-al/GoLessons/commit/40e83298496b177c55bb2f388c68427edf15dcdc)
 
