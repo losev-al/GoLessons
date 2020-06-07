@@ -1,7 +1,7 @@
 Ветка - ссылка на ветку с полным решением
 Коммит - ссылка на коммит в рамках которого можно посмотреть изменения именно по заданию
 
-1. Паттерн фасад [ветка](https://github.com/losev-al/GoLessons/tree/Lesson1) | [коммит](https://github.com/losev-al/GoLessons/commit/c7496748016a55c82ba7b9f69e8958318ba395fc)
+1. Паттерн фасад [ветка](https://github.com/losev-al/GoLessons/tree/Lesson1) | [коммит](https://github.com/losev-al/GoLessons/commit/c7496748016a55c82ba7b9f69e8958318ba395fc) в соответствии с конвенцией [ветка](https://github.com/losev-al/GoLessons/tree/Lesson1.Cnv)
 
 2. Паттерн строитель [ветка](https://github.com/losev-al/GoLessons/tree/Lesson2) | [коммит](https://github.com/losev-al/GoLessons/commit/24ee0886126b0aa935e34124e1821037c66406a7)
 
