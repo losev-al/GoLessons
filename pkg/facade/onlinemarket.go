@@ -28,7 +28,7 @@ type onlineMarket struct {
 }
 
 // CreateOrder ...
-func (o *onlineMarket) CreateOrder(goods []int) (*models.Order, error) {
+func (o *onlineMarket) CreateOrder(goods []int) (order *models.Order, err error) {
 	var notEnoughGoods []int
 	for _, goodsId := range goods {
 		rest, err := o.Warehouse.GetRest(goodsId)
@@ -37,10 +37,11 @@ func (o *onlineMarket) CreateOrder(goods []int) (*models.Order, error) {
 		}
 	}
 	if len(notEnoughGoods) > 0 {
-		return nil, fmt.Errorf("there are no products with id: %v in stock", notEnoughGoods)
+		err = fmt.Errorf("there are no products with id: %v in stock", notEnoughGoods)
+		return
 	}
-	order := o.OrderService.CreateOrder(goods)
-	return order, nil
+	order = o.OrderService.CreateOrder(goods)
+	return
 }
 
 // ConfirmOrder book goods in order
@@ -52,8 +53,10 @@ func (o *onlineMarket) ConfirmOrder(id int) error {
 	for bookIndex, goods := range order.Goods {
 		err = o.Warehouse.Book(goods)
 		if err != nil {
-			for unBookIndex := bookIndex; unBookIndex >= 0; unBookIndex-- {
-				o.Warehouse.UnBook(order.Goods[unBookIndex])
+			for unBookIndex := bookIndex - 1; unBookIndex >= 0; unBookIndex-- {
+				if unBookErr := o.Warehouse.UnBook(order.Goods[unBookIndex]); unBookErr != nil {
+					fmt.Println(unBookErr)
+				}
 			}
 			break
 		}

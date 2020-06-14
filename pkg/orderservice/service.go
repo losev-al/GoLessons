@@ -5,6 +5,7 @@ import (
 	models "github.com/losev-al/GoLessons/pkg/api/v1"
 )
 
+// Service describe order service
 type Service interface {
 	CreateOrder(goods []int) *models.Order
 	GetOrder(id int) (*models.Order, error)

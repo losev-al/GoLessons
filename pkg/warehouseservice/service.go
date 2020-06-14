@@ -19,12 +19,13 @@ type service struct {
 }
 
 // GetRest ...
-func (s *service) GetRest(id int) (int, error) {
+func (s *service) GetRest(id int) (count int, err error) {
 	goods, err := s.getGoods(id)
 	if err != nil {
-		return 0, err
+		return
 	}
-	return goods.StockBalance - goods.Booked, nil
+	count = goods.StockBalance - goods.Booked
+	return count, nil
 }
 
 // Book book a good if can
