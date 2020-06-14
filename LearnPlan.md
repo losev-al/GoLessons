@@ -106,7 +106,7 @@ https://medium.com/@vCabbage/go-are-pointers-a-performance-optimization-a95840d3
 
 https://habr.com/ru/post/339192/
 
-https://medium.com/a-journey-with-go/go-should-i-use-a-pointer-instead-of-a-copy-of-my-struct-44b43b104963
+https://medium.com/a-journey-with-go/go-should-bookIndex-use-a-pointer-instead-of-a-copy-of-my-struct-44b43b104963
 
 https://www.ardanlabs.com/blog/2017/05/language-mechanics-on-stacks-and-pointers.html
 
@@ -236,4 +236,4 @@ https://habr.com/ru/company/badoo/blog/301990/
 
 очень полезная статья, к изучению обязательна
 
-https://www.freecodecamp.org/news/how-i-investigated-memory-leaks-in-go-using-pprof-on-a-large-codebase-4bec4325e192/
+https://www.freecodecamp.org/news/how-bookIndex-investigated-memory-leaks-in-go-using-pprof-on-a-large-codebase-4bec4325e192/
