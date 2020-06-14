@@ -51,6 +51,7 @@ func (s *service) GetOrderList(state models.State) (result []*models.Order) {
 	return
 }
 
+// NewService ...
 func NewService() Service {
 	return &service{
 		orders: make(map[int]*models.Order),

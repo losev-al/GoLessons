@@ -93,6 +93,7 @@ func (s *service) getGoods(id int) (goods *models.SavedProduct, err error) {
 	return
 }
 
+// NewService ...
 func NewService() Service {
 	return &service{
 		warehouse: make(map[int]*models.SavedProduct),

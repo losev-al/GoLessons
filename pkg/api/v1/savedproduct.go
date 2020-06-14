@@ -1,6 +1,6 @@
 package v1
 
-// Order describes an order in an online store
+// SavedProduct describes an good on warehouse
 type SavedProduct struct {
 	Id int
 	StockBalance int
