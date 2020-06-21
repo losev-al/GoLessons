@@ -5,7 +5,12 @@ import (
 	)
 
 type weightProductVisitor interface {
-	PrintWeightProduct(p WeightProduct)
+	PrintWeightProduct(p shortWeightProduct)
+}
+
+type shortWeightProduct interface {
+	Name() string
+	PricePerKg() float32
 }
 
 type WeightProduct interface {
@@ -37,7 +42,7 @@ func (p *weightProduct) PrintPriceTag(visitor weightProductVisitor) {
 
 // String ...
 func (p *weightProduct) String() string {
-	return fmt.Sprintf("Товар: %v\nцена: %v р/кг\n", p.Name(), p.PricePerKg())
+	return fmt.Sprintf("Товар: %v\nЦена: %v р/кг\n", p.Name(), p.PricePerKg())
 }
 
 // NewWeightProduct

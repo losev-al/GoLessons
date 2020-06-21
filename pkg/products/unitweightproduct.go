@@ -5,7 +5,13 @@ import (
 )
 
 type unitWeightProductVisitor interface {
-	PrintUnitWeightProduct(p UnitWeightProduct)
+	PrintUnitWeightProduct(p shortUnitWeightProduct)
+}
+
+type shortUnitWeightProduct interface {
+	Name() string
+	PricePerUnit() float32
+	UnitWeight() float32
 }
 
 // UnitWeightProduct ...
