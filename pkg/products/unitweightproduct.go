@@ -2,12 +2,10 @@ package products
 
 import (
 	"fmt"
-
-	v1 "github.com/losev-al/GoLessons/pkg/api/v1"
 )
 
 type unitWeightProductVisitor interface {
-	PrintUnitWeightProduct(p *v1.UnitWeightProduct)
+	PrintUnitWeightProduct(p UnitWeightProduct)
 }
 
 // UnitWeightProduct ...
@@ -20,27 +18,29 @@ type UnitWeightProduct interface {
 }
 
 type unitWeightProduct struct {
-	v1.UnitWeightProduct
+	name string
+	pricePerUnit float32
+	unitWeight float32
 }
 
 // Name ...
 func (p *unitWeightProduct) Name() string {
-	return p.UnitWeightProduct.Name
+	return p.name
 }
 
 // PricePerUnit ...
 func (p *unitWeightProduct) PricePerUnit() float32 {
-	return p.UnitWeightProduct.PricePerUnit
+	return p.pricePerUnit
 }
 
 // UnitWeight ...
 func (p *unitWeightProduct) UnitWeight() float32 {
-	return p.UnitWeightProduct.UnitWeight
+	return p.unitWeight
 }
 
 // PrintPriceTag ...
 func (p *unitWeightProduct) PrintPriceTag(visitor unitWeightProductVisitor) {
-	visitor.PrintUnitWeightProduct(&p.UnitWeightProduct)
+	visitor.PrintUnitWeightProduct(p)
 }
 
 // String ...
@@ -49,8 +49,10 @@ func (p *unitWeightProduct) String() string {
 }
 
 // NewUnitWeightProduct ...
-func NewUnitWeightProduct(p v1.UnitWeightProduct) UnitWeightProduct {
+func NewUnitWeightProduct(name string, pricePerUnit float32, unitWeight float32) UnitWeightProduct {
 	return &unitWeightProduct{
-		UnitWeightProduct: p,
+		name:         name,
+		pricePerUnit: pricePerUnit,
+		unitWeight:   unitWeight,
 	}
 }

@@ -2,12 +2,10 @@ package products
 
 import (
 	"fmt"
-
-	v1 "github.com/losev-al/GoLessons/pkg/api/v1"
-)
+	)
 
 type weightProductVisitor interface {
-	PrintWeightProduct(p *v1.WeightProduct)
+	PrintWeightProduct(p WeightProduct)
 }
 
 type WeightProduct interface {
@@ -18,22 +16,23 @@ type WeightProduct interface {
 }
 
 type weightProduct struct {
-	v1.WeightProduct
+	name string
+	pricePerKg float32
 }
 
 // Name ...
 func (p *weightProduct) Name() string {
-	return p.WeightProduct.Name
+	return p.name
 }
 
 // PricePerKg ...
 func (p *weightProduct) PricePerKg() float32 {
-	return p.WeightProduct.PricePerKg
+	return p.pricePerKg
 }
 
 // PricePerKg ...
 func (p *weightProduct) PrintPriceTag(visitor weightProductVisitor) {
-	visitor.PrintWeightProduct(&p.WeightProduct)
+	visitor.PrintWeightProduct(p)
 }
 
 // String ...
@@ -42,9 +41,10 @@ func (p *weightProduct) String() string {
 }
 
 // NewWeightProduct
-func NewWeightProduct(p v1.WeightProduct) WeightProduct {
+func NewWeightProduct(name string, pricePerKg float32) WeightProduct {
 	return &weightProduct{
-		WeightProduct: p,
+		name:       name,
+		pricePerKg: pricePerKg,
 	}
 }
 
